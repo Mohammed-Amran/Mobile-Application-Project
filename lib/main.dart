@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:support_for_better_livingspace/logIn.dart';
 
 
 void main() {
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
 
       title: 'Support for better livingSpace',
     
-      home: 
+      home: LogIn(),
       
     );
   }
