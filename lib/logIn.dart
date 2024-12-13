@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
+import 'package:support_for_better_livingspace/Register.dart';
+import 'primary_screen/primary.dart';
 
 class LogIn extends StatelessWidget{
 
@@ -50,7 +51,7 @@ body: Padding(
                   //The LogIn button
                   Row( mainAxisAlignment: MainAxisAlignment.center ,
 
-                       children: [ ElevatedButton(onPressed:  () { },
+                       children: [ ElevatedButton(onPressed:  () {Navigator.push(context, MaterialPageRoute(builder: (context) => const Primary())); },
 
                                                   style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF89A8B2), //Background color
                                                                                   foregroundColor: const Color(0xFFF1F0E8), //Text color
@@ -81,7 +82,7 @@ body: Padding(
                                                                
                                                                 ..onTap = () {
 
-                                                                              
+                                                                              Navigator.push(context, MaterialPageRoute(builder: (context) =>const SingUp()) ); 
                                                                             
                                                                              },
 
