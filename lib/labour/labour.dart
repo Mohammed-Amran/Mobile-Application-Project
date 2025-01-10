@@ -329,7 +329,47 @@ String name = '';
                                       ),
                       
                                                                                               ]
-                      
+                      else if (request['status'] == 'Accepted' || request['status'] == 'On the way' || request['status'] == 'Working on it' || request['status'] == 'Done') ...[
+                       
+                        DropdownButton<String>(
+                          value: request['status'],
+                          onChanged: (newValue) {
+                            if (newValue != null) {
+                              
+                              updateRequestStatus(request['id'], newValue);
+                              
+                              setState(() {
+                                 if (newValue == 'Done') {
+                                                          requests.removeAt(index); // Remove the container
+                                                         } 
+                                 else {
+                                       requests[index]['status'] = newValue;
+                                      }
+
+                              });
+                            }
+                          },
+                          items: const [
+                            DropdownMenuItem(
+                              value: 'Accepted',
+                              child: Text('Accepted'),
+                            ),
+                            DropdownMenuItem(
+                              value: 'On the way',
+                              child: Text('On the way'),
+                            ),
+                            DropdownMenuItem(
+                              value: 'Working on it',
+                              child: Text('Working on it'),
+                            ),
+                            DropdownMenuItem(
+                              value: 'Done',
+                              child: Text('Done'),
+                              
+                            ),
+                          ],
+                        ),
+                      ],
                        
                     ],
                   ),
