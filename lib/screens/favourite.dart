@@ -65,7 +65,7 @@ class FavouriteView extends State<Favourite> {
         break;
       default:
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('No matching labour screen found.')),
+          const SnackBar(content: Text('No matching labour screen found.')),
         );
     }
   }

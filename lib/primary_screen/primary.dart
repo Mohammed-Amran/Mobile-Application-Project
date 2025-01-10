@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:support_for_better_livingspace/login.dart';
+import 'package:support_for_better_livingspace/log_in.dart';
 import 'package:support_for_better_livingspace/screens/cartender.dart';
 import 'package:support_for_better_livingspace/screens/electrician.dart';
 import 'package:support_for_better_livingspace/screens/favourite.dart';
 import 'package:support_for_better_livingspace/screens/gardener.dart';
-//import 'package:support_for_better_livingspace/screens/history.dart';
+import 'package:support_for_better_livingspace/screens/history.dart';
 import 'package:support_for_better_livingspace/screens/plumber.dart';
 import 'package:support_for_better_livingspace/screens/view_request_status.dart';
 
@@ -187,13 +187,13 @@ appBar: PreferredSize(
                                                    title: const Text("History"),
                                                             
                                                    onTap: () {
-                                                            /*   Navigator.pushAndRemoveUntil(context, 
+                                                              Navigator.pushAndRemoveUntil(context, 
 
                                                                                             MaterialPageRoute( builder: (context) => History(email: widget.email,) ),
                                                                                                            
                                                                                             (Route<dynamic> route) => false, // Clears the navigation stack
                                                                                            );
-                                                          */   }
+                                                             }
 
                                                  ),
 
@@ -206,7 +206,7 @@ appBar: PreferredSize(
                                                    onTap: () {
                                                                Navigator.pushAndRemoveUntil(context, 
 
-                                                                                            MaterialPageRoute( builder: (context) => const LogIn() ),
+                                                                                            MaterialPageRoute( builder: (context) =>  LogIn() ),
                                                                                                            
                                                                                             (Route<dynamic> route) => false, // Clears the navigation stack
                                                                                            );

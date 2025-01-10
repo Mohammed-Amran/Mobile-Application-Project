@@ -1,4 +1,6 @@
-// ignore_for_file: use_build_context_synchronously
+
+
+
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -115,6 +117,7 @@ class LogIn extends StatelessWidget {
       // If a match is found in 'labours'
       if (labourQuerySnapshot.docs.isNotEmpty) {
         Navigator.pushReplacement(
+          // ignore: use_build_context_synchronously
           context,
           MaterialPageRoute(builder: (context) => Labour(email: email)),
         );
@@ -131,17 +134,20 @@ class LogIn extends StatelessWidget {
       if (userQuerySnapshot.docs.isNotEmpty) {
         // User found, navigate to the primary screen
         Navigator.pushReplacement(
+          // ignore: use_build_context_synchronously
           context,
           MaterialPageRoute(builder: (context) => Primary(email: email)),
         );
       } else {
         // No matching user found
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Invalid email or password.')),
         );
       }
     } catch (e) {
       // Show error message
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Login failed: $e')),
       );
