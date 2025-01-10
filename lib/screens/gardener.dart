@@ -16,7 +16,7 @@ class Gardener extends StatefulWidget {
 
 
 class GardenerScreen extends State<Gardener> {
-  
+  // below is the instance of FireStore
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   String? selectedWorkingHours1;
