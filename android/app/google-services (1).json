@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "44508729137",
+    "project_id": "mobileapp-d7bf9",
+    "storage_bucket": "mobileapp-d7bf9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:44508729137:android:111e0b890c94d8c66faa10",
+        "android_client_info": {
+          "package_name": "com.example.support_for_better_livingspace"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDO8F0yWFwpN5YClUJWnj8DRHdBJ1hp0dg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

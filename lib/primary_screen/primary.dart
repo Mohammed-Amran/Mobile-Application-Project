@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
+
 import 'package:support_for_better_livingspace/login.dart';
 import 'package:support_for_better_livingspace/screens/cartender.dart';
 import 'package:support_for_better_livingspace/screens/electrician.dart';
+import 'package:support_for_better_livingspace/screens/favourite.dart';
 import 'package:support_for_better_livingspace/screens/gardener.dart';
+//import 'package:support_for_better_livingspace/screens/history.dart';
 import 'package:support_for_better_livingspace/screens/plumber.dart';
+import 'package:support_for_better_livingspace/screens/view_request_status.dart';
 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+
 class Primary extends StatefulWidget {
-  const Primary({super.key});
+  
+final String email; // Receive the email from the previous screen
+
+  const Primary({super.key, required this.email});
 
   @override
   PrimaryScreen createState() => PrimaryScreen();
@@ -18,13 +26,49 @@ class Primary extends StatefulWidget {
 
 
 class PrimaryScreen extends State<Primary> {
-  
+   
+String name = '';
+String phoneNumber = '';
+
+
+@override
+void initState() {
+                   super.initState();
+                   fetchUserData();
+                 }
+
+
+
+Future<void> fetchUserData() async 
+{
+   
+    final firestore = FirebaseFirestore.instance;
+
+  try {
+        final querySnapshot = await firestore
+          .collection('users')
+          .where('Email', isEqualTo: widget.email) // Use the email
+          .get();
+
+       if (querySnapshot.docs.isNotEmpty) {
+        final userData = querySnapshot.docs.first.data();
+        setState(() {
+          name = userData['FullName'] ?? 'No Name';
+          phoneNumber = userData['Phone'] ?? 'No Phone';
+        });
+       }
+    } 
+    catch (e) {
+                // Handle errors here
+              }
+
+}
 
  
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
 
 appBar: PreferredSize(
 
@@ -38,7 +82,7 @@ appBar: PreferredSize(
                    leadingWidth: 540,
                    leading: Row( 
                     
-                                children: [
+          children: [
 
 
           Builder(builder: (context) => IconButton( icon: const Icon(Icons.menu), onPressed: () { Scaffold.of(context).openDrawer(); }, ), ),
@@ -49,7 +93,7 @@ appBar: PreferredSize(
 
           FloatingActionButton.small( onPressed: () { 
             
-                      Navigator.push( context, MaterialPageRoute( builder: (context) => const Plumber(), ), );       
+                      Navigator.push( context, MaterialPageRoute( builder: (context) =>  Plumber(email: widget.email), ), );       
 
                                                     },
 
@@ -64,7 +108,7 @@ appBar: PreferredSize(
 
           FloatingActionButton.small( onPressed: () {
 
-                               Navigator.push( context, MaterialPageRoute( builder: (context) => const Electrician(), ), );
+                               Navigator.push( context, MaterialPageRoute( builder: (context) =>  Electrician(email: widget.email), ), );
 
                                                     },
                                       child: Image.asset('assets/electrician.png', fit: BoxFit.cover),
@@ -76,7 +120,7 @@ appBar: PreferredSize(
 
           FloatingActionButton.small( onPressed: () {
 
-                          Navigator.push( context, MaterialPageRoute( builder: (context) => const Gardener(), ), );       
+                          Navigator.push( context, MaterialPageRoute( builder: (context) => Gardener(email: widget.email), ), );       
 
                                                     },
                                       backgroundColor: const Color(0xFFE5E1DA),
@@ -89,7 +133,7 @@ appBar: PreferredSize(
 
           FloatingActionButton.small( onPressed: () {
 
-                            Navigator.push( context, MaterialPageRoute( builder: (context) => const Cartender(), ), );
+                            Navigator.push( context, MaterialPageRoute( builder: (context) => Cartender(email: widget.email), ), );
 
                                                      },
                                       backgroundColor: const Color(0xFFE5E1DA),
@@ -111,43 +155,74 @@ appBar: PreferredSize(
 
 
 
-      drawer: Drawer( child: ListView(
+  drawer: Drawer( child: ListView(
 
                              padding: EdgeInsets.zero,
 
                              children: [
 
-                                        ListTile(leading: const Icon(Icons.manage_accounts),
-                                                 title: const Text("Account"),
-                                                 onTap: () {},
-                                                ),
 
-                                        ListTile(leading: const Icon(Icons.logout),
-                                                 title: const Text("Logout"),
-                                                 onTap: () {
+                                          DrawerHeader(                                          
+                                                        child: Column(
+                                                      
+                                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                        
+                                                                      children: [const Icon(Icons.person, size: 50),
+                 
+                                                                                 Text(name, style: const TextStyle(fontSize: 18)),
+                                                                                 
+                                                                                 Text(phoneNumber, style: const TextStyle(fontSize: 16)),
+               
+                                                                                ],
+                                                                     ),
+            
+                                                       ),
 
-                                                   Navigator.pushAndRemoveUntil(context, 
+                                          
 
-                                                                                MaterialPageRoute(
-                                                                                builder: (context) => const LogIn(), 
-                                                                                                 ),
-                                                                                                
-                                                                               (Route<dynamic> route) => false, // Clears the navigation stack
-                                                                               );
-                                                            },
-                                                ),
 
-                                        ],
+                                          ListTile(
+                                                   leading: const Icon(Icons.history),
+                                                   
+                                                   title: const Text("History"),
+                                                            
+                                                   onTap: () {
+                                                            /*   Navigator.pushAndRemoveUntil(context, 
+
+                                                                                            MaterialPageRoute( builder: (context) => History(email: widget.email,) ),
+                                                                                                           
+                                                                                            (Route<dynamic> route) => false, // Clears the navigation stack
+                                                                                           );
+                                                          */   }
+
+                                                 ),
+
+
+                                         ListTile(
+                                                   leading: const Icon(Icons.logout),
+                                                   
+                                                   title: const Text("Logout"),
+                                                            
+                                                   onTap: () {
+                                                               Navigator.pushAndRemoveUntil(context, 
+
+                                                                                            MaterialPageRoute( builder: (context) => const LogIn() ),
+                                                                                                           
+                                                                                            (Route<dynamic> route) => false, // Clears the navigation stack
+                                                                                           );
+                                                             }
+
+                                                 ),
+
+                                      ],
 
                                      ),
-                     ),
+                  ),
     
     
-    body:
-
-    Center(
-  child: SingleChildScrollView(  // Wrapping the Column with SingleChildScrollView to make it scrollable
-    child: Column( mainAxisAlignment: MainAxisAlignment.center,
+  body:  Center( child: SingleChildScrollView(  // Wrapping the Column with SingleChildScrollView to make it scrollable
+          
+           child: Column( mainAxisAlignment: MainAxisAlignment.center,
                  
                   children: [
        
@@ -234,40 +309,63 @@ appBar: PreferredSize(
 
 
 
-      bottomNavigationBar:const BottomAppBar(
-
-        shape:  CircularNotchedRectangle(),
-
-        notchMargin: 8,
-
-        child: SizedBox(
-
-          height: 70,
-
-
-
-        ),
-
-      ),
-   
-   
-   //The middle Home Icon.
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-
-          Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const Primary(),
-      ),
-    );
-
+bottomNavigationBar: BottomAppBar( shape: const CircularNotchedRectangle(),
+  
+                                  notchMargin: 8,
+  
+                                  child: SizedBox( height: 70, child: Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,
+     
+                                                                           children: [
+                                                                                       // Left-side button
+                                                                                       Padding( padding: const EdgeInsets.only(left: 50),
           
-        },
-        child:const Icon(Icons.home),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-   
+                 child: SizedBox(width: 70, height: 70,
+                      
+                                 child: IconButton( icon: const Icon(Icons.timelapse),
+              
+                                                    onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (context) => Request(email: widget.email)),); },
+                                     
+                                                  ),
+                  
+                                ),
+               ),
+                                                                                       
+                                                                                       // Spacer to center the home button
+                                                                                       const SizedBox(width: 48),
+                                                                                       
+                                                                                       // Right-side button
+                                                                                       Padding( padding: const EdgeInsets.only(right: 50),
+                                                                                         
+                                                                                               child: SizedBox(width: 70, height: 70,
+                                                                                           
+                                                                                                               child: IconButton(icon: const Icon(Icons.star), // Replace with your desired icon
+                                                                                             
+                                                                                                                                 onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (context) => Favourite(email: widget.email)) ); },
+                                                                                                                                ),
+                                                                                                              ),
+                                                                                              ),
+                                                                                     ],
+                               
+                                                                          ),
+  
+                                                 ),
+
+                                ),
+
+
+// The middle Home Icon
+floatingActionButton: FloatingActionButton(
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const Primary(email: '',)),
+    );
+  },
+  child: const Icon(Icons.home),
+),
+
+floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+
    
     );
   }

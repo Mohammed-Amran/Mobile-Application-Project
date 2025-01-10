@@ -1,4 +1,3 @@
-// implemented by banw
 import 'package:flutter/material.dart';
 import 'package:support_for_better_livingspace/primary_screen/primary.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -17,7 +16,7 @@ class Gardener extends StatefulWidget {
 
 
 class GardenerScreen extends State<Gardener> {
-  // below is the instance of FireStore
+  
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   String? selectedWorkingHours1;
@@ -26,7 +25,7 @@ class GardenerScreen extends State<Gardener> {
   String? selectedWorkingHours4;
 
   String? selectedWorkingHours;
-
+ 
 
 
  late String userEmail; // Declare a variable to hold the email
@@ -218,7 +217,7 @@ class GardenerScreen extends State<Gardener> {
                                                                                                                                   
                                                                                                                                                                                            actions: [
                                                                                                                                                                                                       // Cancel Button
-                                                                                                                                                                                                      TextButton(onPressed: () => Navigator.of(context).pop(), /Close the modal/ child: const Text('Cancel') ),
+                                                                                                                                                                                                      TextButton(onPressed: () => Navigator.of(context).pop(), /*Close the modal*/ child: const Text('Cancel') ),
                                                                                                                                                                                                     
                                                                                                                                                                                                       // Confirm Button
                                                                                                                                                                                                       ElevatedButton(
@@ -361,7 +360,7 @@ class GardenerScreen extends State<Gardener> {
                                                                                                                                   
                                                                                                                                                                                            actions: [
                                                                                                                                                                                                       // Cancel Button
-                                                                                                                                                                                                      TextButton(onPressed: () => Navigator.of(context).pop(), /Close the modal/ child: const Text('Cancel') ),
+                                                                                                                                                                                                      TextButton(onPressed: () => Navigator.of(context).pop(), /*Close the modal*/ child: const Text('Cancel') ),
                                                                                                                                                                                                     
                                                                                                                                                                                                       // Confirm Button
                                                                                                                                                                                                       ElevatedButton(
@@ -501,7 +500,7 @@ class GardenerScreen extends State<Gardener> {
                                                                                                                                   
                                                                                                                                                                                            actions: [
                                                                                                                                                                                                       // Cancel Button
-                                                                                                                                                                                                      TextButton(onPressed: () => Navigator.of(context).pop(), /Close the modal/ child: const Text('Cancel') ),
+                                                                                                                                                                                                      TextButton(onPressed: () => Navigator.of(context).pop(), /*Close the modal*/ child: const Text('Cancel') ),
                                                                                                                                                                                                     
                                                                                                                                                                                                       // Confirm Button
                                                                                                                                                                                                       ElevatedButton(
@@ -547,3 +546,198 @@ class GardenerScreen extends State<Gardener> {
                                                                                                                                                                                                                     ),
                                                                                                                                                                                                        
                                                                                                                                                                                                          ],
+                                                                                                           
+                                                                                                                                               ),
+                                                                                                        
+                                                                                                      
+                                                                                     ),
+                                                                            
+                                                                            //4th Container
+                                                                           Container( margin: const EdgeInsets.symmetric(vertical: 15),
+             
+                                                                                      height: MediaQuery.of(context).size.height * 0.3,
+                                                                                     
+                                                                                      width: double.infinity,
+                                                                                   
+                                                                                      decoration: BoxDecoration( color: const Color(0xFFB3C8CF), borderRadius: BorderRadius.circular(15) ),
+                                                                                      
+                                                                                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                                                                                      
+                                                                                      child: Row( children: [  
+                                                                                                             //40% of the screen width
+                                                                                                              Expanded( flex: 4,
+                                                                                              
+                                                                                                                          child: Column( mainAxisAlignment: MainAxisAlignment.center,
+                                                                                               
+                                                                                                                                         children: [ Image.asset('assets/gardener.png', width: 50, height: 50),
+                                                                                                                 
+                                                                                                                                                     const SizedBox(height: 10),
+                                                                                                                 
+                                                                                                                                                     const Text('Sam', style: TextStyle( fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black ) ),
+                                                                                                                                                 
+                                                                                                                                                   ],
+                                                                                                                                       
+                                                                                                                                        ),
+                                                                                                                         ), 
+                                                                                                             //60% of the screen width 
+                                                                                                              Expanded( flex: 6, child: Column( mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      
+                                                                                                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                                                 
+                                                                                                                                                children: [
+                                                                                                                                                            DropdownButton<String>(
+                                                                                                                                                                                    isExpanded: true,
+                                                                                                                                                                                   
+                                                                                                                                                                                    underline: Container(),
+                                                                                                                                                                                    
+                                                                                                                                                                                    style: const TextStyle(fontSize: 16, color: Colors.black),
+                                                                                                                                                                                   
+                                                                                                                                                                                    hint: selectedWorkingHours == null
+                                                                                                                                                                                        ? const Row(
+                                                                                                                                                                                                     children: [
+                                                                                                                                                                                                                 Icon(Icons.schedule, size: 20, color: Colors.black),
+                                                                                                                                                                                                      
+                                                                                                                                                                                                                 SizedBox(width: 8),
+                                                                                                                                                                                                       
+                                                                                                                                                                                                                 Text('Working Hours'),
+                                                                                                                                                                                                               ],
+                                                                                                                                                                                              
+                                                                                                                                                                                                   ) : null, // Remove the hint when an item is selected
+                                                                                                                                                                                    
+                                                                                                                                                                                    value: selectedWorkingHours4, // Bind the selected value
+                                                                                                                                                                                    
+                                                                                                                                                                                    items: <String>[
+                                                                                             
+                                                                                                                                                                                                   'Sunday - 7:00 - 12:00',
+                                                                                                                                                                                                   'Monday - 7:00 - 12:00',
+                                                                                                                                                                                                   'Tuesday - 7:00 - 12:00',
+                                                                                                                                                                                                   'Wednesday - 9:00 - 17:00',
+                                                                                                                                                                                    
+                                                                                                                                                                                                   ].map((String value4) { return DropdownMenuItem<String>(value: value4, child: Text(value4) ); }).toList(),
+                                                                                                                                                                                   
+                                                                                                                                                                                    onChanged: (String? newValue4) { setState( () { selectedWorkingHours4 = newValue4; /* Update the selected item*/ } ); },
+                                                                                                                  
+                                                                                                                                                                                   ),
+                                                                                             
+                                                                                                                    
+                                                                                                                                                   
+                                                                                                                                                             const Text('4\$ per hour', style: TextStyle( fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black ) ),
+                                                                                                                     
+                                                                                                                                                             
+                                                                                                                                                             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            
+
+                                                                                                                                                                 children: [ const Text('+964 770 590 4191', style: TextStyle( fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black) ),
+                                                                                                                                                                
+                                                                                                                                                                                  // 'Select' Button
+                                                                                             ElevatedButton(
+                                                                                                            onPressed: () {
+                                                                                                                            showDialog(
+                                                                                                                                       context: context,
+                                                                                                                              
+                                                                                                                                       builder: (BuildContext context) {
+                                                                                                                                                                        return AlertDialog( title: const Text('Confirmation'),
+                                                                                                                                  
+                                                                                                                                                                                            content: const Text('Are you sure you want to proceed?'),
+                                                                                                                                  
+                                                                                                                                                                                           actions: [
+                                                                                                                                                                                                      // Cancel Button
+                                                                                                                                                                                                      TextButton(onPressed: () => Navigator.of(context).pop(), /*Close the modal*/ child: const Text('Cancel') ),
+                                                                                                                                                                                                    
+                                                                                                                                                                                                      // Confirm Button
+                                                                                                                                                                                                      ElevatedButton(
+                                                                                                                                                                                                                      onPressed: () { 
+                                                                                                                                                                                                                                      _handleSelect('Sam', '4\$', '+964 770 590 4191', 'Sam@gmail.com'); // Call your method
+                                                                                                                                                                                                                                      
+                                                                                                                                                                                                                                      Navigator.of(context).pop(); // Close the modal
+                                                                                                                                                                                                                                    },
+                                                                                                                                                                                                        
+                                                                                                                                                                                                                      style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                                                                                                                                                                                                        
+                                                                                                                                                                                                                      child: const Text('Confirm'),
+                                                                                                                                                                                                      
+                                                                                                                                                                                                                    ),
+                                                                                                                                                                                                   
+                                                                                                                                                                                                    ],
+                                                                                                                                                                                          
+                                                                                                                                                                                           );
+                                                                                                                                                  
+                                                                                                                                                                      }
+                                                                                                                           
+                                                                                                                                      );
+                                                                                                                           },
+  
+                                                                                                            style: ElevatedButton.styleFrom( backgroundColor: Colors.red,
+   
+                                                                                                                                             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                                  
+                                                                                                                                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                                                                                                                            ),
+ 
+                                                                                                            child: const Text('Select', style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold) ) )
+                                                                                                                                                                      
+                                                                                                                                                                           ],
+
+                                                                                                                                                                ),
+                                                                                                                                      
+
+                                                                                                                                                          ],
+                                                                                                                                                                                                             
+                                                                                                                                                                                                                                           ),
+                                                                                                              
+                                                                                                                                                                                                                    ),
+                                                                                                                                                                                                       
+                                                                                                                                                                                                         ],
+                                                                                                           
+                                                                                                                                               ),
+                                                                                                        
+                                                                                                      
+                                                                                     ),
+
+                                                                          ],//closing bracket of the children list that contains the Containers
+       
+       
+                                                              ),
+    
+                                                ),
+    
+  bottomNavigationBar:const BottomAppBar(
+
+        shape:  CircularNotchedRectangle(),
+
+        notchMargin: 8,
+
+        child: SizedBox(
+
+          height: 70,
+
+        ),
+
+      ),
+   
+   
+   //The middle Home Icon.
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+
+          Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const Primary(email: ''),
+      ),
+    );
+
+          
+        },
+        child:const Icon(Icons.home),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+   
+
+
+
+                   );
+ 
+  }
+
+}

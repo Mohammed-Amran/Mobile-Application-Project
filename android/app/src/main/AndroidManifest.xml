@@ -1,4 +1,6 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.support_for_better_livingspace">
+
     <application
         android:label="support_for_better_livingspace"
         android:name="${applicationName}"

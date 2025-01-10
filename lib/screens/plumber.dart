@@ -1,4 +1,3 @@
-// implemented by banw
 import 'package:flutter/material.dart';
 import 'package:support_for_better_livingspace/primary_screen/primary.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -245,7 +244,7 @@ return Scaffold( body: SingleChildScrollView(
                                                                                                                                   
                                                                                                                                                                                            actions: [
                                                                                                                                                                                                       // Cancel Button
-                                                                                                                                                                                                      TextButton(onPressed: () => Navigator.of(context).pop(), /Close the modal/ child: const Text('Cancel') ),
+                                                                                                                                                                                                      TextButton(onPressed: () => Navigator.of(context).pop(), /*Close the modal*/ child: const Text('Cancel') ),
                                                                                                                                                                                                     
                                                                                                                                                                                                       // Confirm Button
                                                                                                                                                                                                       ElevatedButton(
@@ -414,7 +413,7 @@ return Scaffold( body: SingleChildScrollView(
                                                                                                                                   
                                                                                                                                                                                            actions: [
                                                                                                                                                                                                       // Cancel Button
-                                                                                                                                                                                                      TextButton(onPressed: () => Navigator.of(context).pop(), /Close the modal/ child: const Text('Cancel') ),
+                                                                                                                                                                                                      TextButton(onPressed: () => Navigator.of(context).pop(), /*Close the modal*/ child: const Text('Cancel') ),
                                                                                                                                                                                                     
                                                                                                                                                                                                       // Confirm Button
                                                                                                                                                                                                       ElevatedButton(
@@ -579,7 +578,7 @@ return Scaffold( body: SingleChildScrollView(
                                                                                                                                   
                                                                                                                                                                                            actions: [
                                                                                                                                                                                                       // Cancel Button
-                                                                                                                                                                                                      TextButton(onPressed: () => Navigator.of(context).pop(), /Close the modal/ child: const Text('Cancel') ),
+                                                                                                                                                                                                      TextButton(onPressed: () => Navigator.of(context).pop(), /*Close the modal*/ child: const Text('Cancel') ),
                                                                                                                                                                                                     
                                                                                                                                                                                                       // Confirm Button
                                                                                                                                                                                                       ElevatedButton(
@@ -699,3 +698,137 @@ return Scaffold( body: SingleChildScrollView(
                                                                                                                     ) : null, // Remove the hint when an item is selected
                                                                                                      
                                                                                                      value: selectedWorkingHours4, // Bind the selected value
+                                                                                                     
+                                                                                                     items: <String>[
+              
+                                                                                                                    'Sunday - 7:00 - 12:00',
+                                                                                                                    'Monday - 7:00 - 12:00',
+                                                                                                                    'Tuesday - 7:00 - 12:00',
+                                                                                                                    'Wednesday - 9:00 - 17:00',
+                                                                                                     
+                                                                                                                    ].map((String value4) { return DropdownMenuItem<String>(value: value4, child: Text(value4) ); }).toList(),
+                                                                                                    
+                                                                                                     onChanged: (String? newValue4) { setState( () { selectedWorkingHours4 = newValue4; /* Update the selected item*/ } ); },
+                                   
+                                                                                                    ),
+                            
+
+                                                                            // Text for hourly rate
+                                                                            const Text('8\$ per hour', style: TextStyle( fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black) ),
+                                                    
+
+                                                                            // Phone number with 'Select' button
+                                                                            Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                              
+                                                                                 children: [ const Text( '+964 770 567 8990', style: TextStyle( fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black) ),
+                                                                                
+                                                                                             // 'Select' Button
+                                                                                             ElevatedButton(
+                                                                                                            onPressed: () {
+                                                                                                                            showDialog(
+                                                                                                                                       context: context,
+                                                                                                                              
+                                                                                                                                       builder: (BuildContext context) {
+                                                                                                                                                                        return AlertDialog( title: const Text('Confirmation'),
+                                                                                                                                  
+                                                                                                                                                                                            content: const Text('Are you sure you want to proceed?'),
+                                                                                                                                  
+                                                                                                                                                                                           actions: [
+                                                                                                                                                                                                      // Cancel Button
+                                                                                                                                                                                                      TextButton(onPressed: () => Navigator.of(context).pop(), /*Close the modal*/ child: const Text('Cancel') ),
+                                                                                                                                                                                                    
+                                                                                                                                                                                                      // Confirm Button
+                                                                                                                                                                                                      ElevatedButton(
+                                                                                                                                                                                                                      onPressed: () { 
+                                                                                                                                                                                                                                      _handleSelect('Mack', '8\$', '+964 770 567 8990', 'Mack@gmail.com'); // Call your method
+                                                                                                                                                                                                                                      
+                                                                                                                                                                                                                                      Navigator.of(context).pop(); // Close the modal
+                                                                                                                                                                                                                                    },
+                                                                                                                                                                                                        
+                                                                                                                                                                                                                      style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                                                                                                                                                                                                        
+                                                                                                                                                                                                                      child: const Text('Confirm'),
+                                                                                                                                                                                                      
+                                                                                                                                                                                                                    ),
+                                                                                                                                                                                                   
+                                                                                                                                                                                                    ],
+                                                                                                                                                                                          
+                                                                                                                                                                                           );
+                                                                                                                                                  
+                                                                                                                                                                      }
+                                                                                                                           
+                                                                                                                                      );
+                                                                                                                           },
+  
+                                                                                                            style: ElevatedButton.styleFrom( backgroundColor: Colors.red,
+   
+                                                                                                                                             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                                  
+                                                                                                                                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                                                                                                                            ),
+ 
+                                                                                                            child: const Text('Select', style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold) ) )
+                                                                                      
+                                                                                          ],
+                                                                                
+                                                                               )
+                                                                  
+                                                                         ],
+                                                             
+                                                              ),
+                                        
+                                                ),
+          
+                                       ],
+        
+                           ),
+              
+              ),
+      
+
+
+   
+//----------------------------------------------------------------------------------  
+   
+    ],
+  ),
+),
+
+
+bottomNavigationBar:const BottomAppBar( shape:  CircularNotchedRectangle(), notchMargin: 3,
+
+                                        child: SizedBox( height: 40,
+
+        ),
+
+      ),
+   
+   
+   //The middle Home Icon.
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+
+          Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const Primary(email: ''),
+      ),
+    );
+
+          
+        },
+        child:const Icon(Icons.home),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+   
+
+
+
+
+);
+
+
+}//closing bracket of the Scaffold.
+
+
+}//closing bracket of the PlumberScreen class.

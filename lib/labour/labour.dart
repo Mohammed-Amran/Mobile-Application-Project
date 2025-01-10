@@ -1,7 +1,7 @@
 //This is the labour view
 // this file was developed by Muhammad & Banw
 import 'package:flutter/material.dart';
-import 'package:support_for_better_livingspace/labour/labour_history.dart';
+//$import 'package:support_for_better_livingspace/labour/labour_history.dart';
 import 'package:support_for_better_livingspace/login.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -203,12 +203,12 @@ String name = '';
             ListTile(
               leading: const Icon(Icons.history),
               title: const Text("History"),
-              onTap: () { Navigator.pushAndRemoveUntil(context, 
+              onTap: () {  /* Navigator.pushAndRemoveUntil(context, 
 
                                                                                             MaterialPageRoute( builder: (context) => LabourHistory(email: widget.email) ),
                                                                                                            
                                                                                             (Route<dynamic> route) => false, // Clears the navigation stack
-                                                                                           );},
+                                                                                           ); */ },
             ),
             ListTile(
               leading: const Icon(Icons.logout),
@@ -216,7 +216,7 @@ String name = '';
               onTap: () {
                 Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => LogIn()),
+                  MaterialPageRoute(builder: (context) => const LogIn()),
                   (Route<dynamic> route) => false, // Clears the navigation stack
                 );
               },
